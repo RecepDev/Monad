@@ -26,7 +26,6 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
   final _routerService = locator<RouterService>();
   FirebaseFirestore db = FirebaseFirestore.instance;
   late ScrollController _controller;
-  bool isSkeleteonWorking = true;
   /*  String _counter = "0";
   int _currentTime = 5; */
 
@@ -64,6 +63,7 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
 
   @override
   Widget build(BuildContext context) {
+    print("homepagestate");
     ui.platformViewRegistry.registerViewFactory(
       'twitter',
       (int uid) {
@@ -239,10 +239,11 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
                       if (state is BlocInitial) {
                         return Center();
                       } else if (state is BlocDataLoaded) {
+                        print("blocloaded");
                         var listOfMemes = state.listOfMemes;
 
                         print("çalışıyor");
-                        if (isSkeleteonWorking == true) {
+                        /*  if (isSkeleteonWorking == true) {
                           Future.delayed(
                             Duration(seconds: 1),
                             () {
@@ -251,17 +252,11 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
                               });
                             },
                           );
-                        }
+                        } */
 
-                        return Skeletonizer(
-                          effect: ShimmerEffect(
-                              highlightColor: monadWine, baseColor: monadBlue),
-                          enabled: isSkeleteonWorking,
-                          child: GridViewWidget(
-                            isSkeleteonWorking: isSkeleteonWorking,
-                            listOfMemes: listOfMemes,
-                            controller: _controller,
-                          ),
+                        return GridViewWidget(
+                          listOfMemes: listOfMemes,
+                          controller: _controller,
                         );
                       }
                       return Center();
@@ -282,12 +277,10 @@ class GridViewWidget extends StatefulWidget {
     super.key,
     required this.listOfMemes,
     required this.controller,
-    required this.isSkeleteonWorking,
   });
 
   List listOfMemes;
   ScrollController controller;
-  bool isSkeleteonWorking;
 
   @override
   State<GridViewWidget> createState() => _GridViewWidgetState();
@@ -296,9 +289,20 @@ class GridViewWidget extends StatefulWidget {
 class _GridViewWidgetState extends State<GridViewWidget> {
   List<int> pageNumbers = [1, 2];
   List<List<dynamic>> newList = [];
+  bool isSkeleteonWorking = true;
+
   @override
   void initState() {
     super.initState();
+    Future.delayed(
+      Duration(seconds: 2),
+      () {
+        print("setstate");
+        setState(() {
+          isSkeleteonWorking = false;
+        });
+      },
+    );
     newList = listeyiBol(widget.listOfMemes, 50);
     /*  if (widget.listOfMemes.length > 50) {}
     for (var i = 0; i < widget.listOfMemes.length; i++) {} */
@@ -324,49 +328,60 @@ class _GridViewWidgetState extends State<GridViewWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              child: MasonryGridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 6,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                itemCount: throwBackListLength(newList),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              /* boxShadow: [BoxShadow(blurRadius: 555)], */
-                              borderRadius: BorderRadius.circular(22)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(22),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl: widget.listOfMemes[index]["url"],
-                              placeholder: (context, url) => Center(
-                                  /* child: CircularProgressIndicator() */),
-                              errorWidget: (context, url, error) {
-                                return Center(
-                                  child: Icon(Icons.error),
-                                );
-                              },
+            Skeletonizer(
+              effect: ShimmerEffect(
+                  highlightColor: monadWine, baseColor: monadBlue),
+              enabled: isSkeleteonWorking,
+              child: Container(
+                child: MasonryGridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 6,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  itemCount: throwBackListLength(newList),
+                  itemBuilder: (context, index) {
+                    /*    print(index);
+                    if (index == 49) {
+                      setState(() {
+                        isSkeleteonWorking = false;
+                      });
+                    } */
+                    return Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                /* boxShadow: [BoxShadow(blurRadius: 555)], */
+                                borderRadius: BorderRadius.circular(22)),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(22),
+                              child: CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                imageUrl: widget.listOfMemes[index]["url"],
+                                placeholder: (context, url) => Center(
+                                    /* child: CircularProgressIndicator() */),
+                                errorWidget: (context, url, error) {
+                                  return Center(
+                                    child: Icon(Icons.error),
+                                  );
+                                },
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Text(
-                            widget.listOfMemes[index]["username"],
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8),
+                            child: Text(
+                              widget.listOfMemes[index]["username"],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             Container(
@@ -391,15 +406,14 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                           child: Material(
                             child: InkWell(
                               onTap: () {
-                                setState(() {
-                                  widget.isSkeleteonWorking = true;
-                                  widget.controller.animateTo(
-                                    600, // Başlangıç noktasına scroll yapar
-                                    curve: Curves.easeOut,
-                                    duration: const Duration(milliseconds: 500),
-                                  );
-                                  widget.listOfMemes = newList[index];
-                                });
+                                widget.controller.animateTo(
+                                  600, // Başlangıç noktasına scroll yapar
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 500),
+                                );
+                                waitAndSetState();
+                                
+                                widget.listOfMemes = newList[index];
                               },
                               child: Container(
                                   width: 33,
@@ -456,7 +470,26 @@ class _GridViewWidgetState extends State<GridViewWidget> {
     );
   }
 
-  throwBackListLength(List<List<dynamic>> liste) {
+  void waitAndSetState() async{
+   await Future.delayed(
+      Duration(milliseconds: 500),
+      () {  },
+    );
+    setState(() {
+      isSkeleteonWorking = true;
+    });
+    Future.delayed(
+      Duration(seconds: 1),
+      () {
+        print("setstate");
+        setState(() {
+          isSkeleteonWorking = false;
+        });
+      },
+    );
+  }
+
+  int throwBackListLength(List<List<dynamic>> liste) {
     if (widget.listOfMemes.length < 50) {
       return widget.listOfMemes.length;
     } else {

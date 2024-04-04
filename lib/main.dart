@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:monad/extensions/Provider/monadProvider.dart';
 import 'package:monad/extensions/bloc/bloc/memes_bloc_bloc.dart';
 import 'package:monad/firebase_options.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:monad/app/app.bottomsheets.dart';
 import 'package:monad/app/app.dialogs.dart';
@@ -21,7 +23,9 @@ Future<void> main() async {
   setupDialogUi();
   setupBottomSheetUi();
   runApp(
-      BlocProvider(create: (context) => MemesBloc(), child: const MainApp()));
+      BlocProvider(create: (context) => MemesBloc(), child: ChangeNotifierProvider(
+        create: (context) => MonadProvider(),
+        child: const MainApp())));
 }
 
 class MainApp extends StatelessWidget {

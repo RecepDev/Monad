@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:glass/glass.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -199,61 +200,59 @@ class _AboutViewDesktopState extends State<AboutViewDesktop> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 222),
-                        child: Positioned(
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Extreme Parallelized",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 33,
-                                    color: monadWhiteRabbit,
-                                  ),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                "Extreme Parallelized",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 33,
+                                  color: monadWhiteRabbit,
                                 ),
-                                Text(
-                                  "Performance",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 33,
-                                    color: monadWhiteRabbit,
-                                  ),
+                              ).animate().fade(duration: Duration(milliseconds: 444)).moveY(begin: 50,end: 0),
+                              Text(
+                                "Performance",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 33,
+                                  color: monadWhiteRabbit,
                                 ),
-                                SizedBox(
-                                  height: 8,
+                              ).animate().fade(duration: Duration(milliseconds: 444)).moveY(begin: 50,end: 0),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "Superscalar Pipelining for the EVM",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 22,
+                                  color: monadWhiteRabbit,
                                 ),
-                                Text(
-                                  "Superscalar Pipelining for the EVM",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 22,
-                                    color: monadWhiteRabbit,
-                                  ),
+                              ).animate().fade(duration: Duration(milliseconds: 444)).moveY(begin: 50,end: 0),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "Monad is a decentralized, developer-forward Layer 1 smart contract platform that ushers \r in a new paradigm of possibility through pipelined execution of Ethereum transactions.",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
+                                  color: monadWhiteRabbit,
                                 ),
-                                SizedBox(
-                                  height: 8,
+                              ).animate().fade(duration: Duration(milliseconds: 444)).moveY(begin: 50,end: 0),
+                              SizedBox(
+                                height: 11,
+                              ),
+                              Text(
+                                "Crafted for productivity, fundamentally optimized.",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
+                                  color: monadWhiteRabbit,
                                 ),
-                                Text(
-                                  "Monad is a decentralized, developer-forward Layer 1 smart contract platform that ushers \r in a new paradigm of possibility through pipelined execution of Ethereum transactions.",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: monadWhiteRabbit,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 11,
-                                ),
-                                Text(
-                                  "Crafted for productivity, fundamentally optimized.",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: monadWhiteRabbit,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ).animate().fade(duration: Duration(milliseconds: 444)).moveY(begin: 50,end: 0),
+                            ],
                           ),
                         ),
                       ),
@@ -441,7 +440,7 @@ class _AboutViewDesktopState extends State<AboutViewDesktop> {
                         ),
                       ),
                     ],
-                  )
+                  ).animate().fade(duration: Duration(milliseconds: 444), delay: Duration(milliseconds: 444)).moveY(begin: 50,end: 0)
                 ],
               ),
             ),

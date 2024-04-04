@@ -205,7 +205,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     twitterLink:
                                         "https://twitter.com/0x_eunice",
                                     twitterUserName: "@0x_eunice"),
-                                UserWidget(
+                                /* UserWidget(
                                     name: "",
                                     descp: "",
                                     image: "",
@@ -249,7 +249,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     instaName: "",
                                     location: "",
                                     twitterLink: "",
-                                    twitterUserName: ""),
+                                    twitterUserName: ""), */
                               ],
                             ),
                           )

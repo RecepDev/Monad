@@ -11,8 +11,16 @@ part 'memes_bloc_state.dart';
 class MemesBloc extends Bloc<MemesBlocEvent, MemesBlocState> {
   MemesBloc() : super(BlocInitial()) {
     on<BlocLoadData>((event, emit) async {
+
+      DocumentSnapshot<Map<String, dynamic>> list = await FirebaseFirestore
+            .instance
+            .collection("memes")
+            .doc("erlbNt5BSosr7Y5w9mw0")
+            .get();
+        List<dynamic> newlist = list.data()!["memelist"];
+        emit(BlocDataLoaded(newlist));
       /*  emit(BlocInitial()); */
-      final response = await http.get(
+     /*  final response = await http.get(
         Uri.parse(
             'https://discord.com/api/v9/channels/1191785265228939344/messages'),
         headers: {
@@ -84,19 +92,14 @@ class MemesBloc extends Bloc<MemesBlocEvent, MemesBlocState> {
             }
           } */
         } */
-        DocumentSnapshot<Map<String, dynamic>> list = await FirebaseFirestore
-            .instance
-            .collection("memes")
-            .doc("erlbNt5BSosr7Y5w9mw0")
-            .get();
-        List<dynamic> newlist = list.data()!["memelist"];
-        emit(BlocDataLoaded(newlist));
+        
       } else {
         throw Exception('Discord kanalından mesajlar alınamadı bb');
       }
       try {} catch (e) {
         print("$e aa");
-      }
+      } */
     });
   }
+   
 }
