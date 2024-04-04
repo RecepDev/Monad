@@ -17,7 +17,8 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return BlocProvider( create: (context) => MemesBloc(),
+    return BlocProvider(
+      create: (context) => MemesBloc(),
       child: ScreenTypeLayout.builder(
         mobile: (_) => const HomeViewMobile(),
         desktop: (_) => HomeViewDesktop(),

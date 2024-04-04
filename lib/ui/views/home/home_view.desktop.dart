@@ -5,22 +5,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:monad/app/app.router.dart';
 import 'package:monad/extensions/bloc/bloc/memes_bloc_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dart:ui_web' as ui;
 import '../../../app/app.locator.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import '../../../models/discord_message_model.dart';
 import '../../common/app_colors.dart';
-import 'home_viewmodel.dart';
 
 class HomeViewDesktop extends StatefulWidget {
   const HomeViewDesktop({super.key});
@@ -48,9 +41,8 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
 /*  || message['embeds'].isNotEmpty */
@@ -87,6 +79,20 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: <Color>[
+                monadBlue, // Orta kısım yarı şeffaf
+                Colors.transparent, // Alt kısım tamamen şeffaf
+              ],
+              stops: const [0.05, 1], // Renklerin geçiş noktaları
+            ),
+          ),
+          child: Center(),
+        ),
         scrolledUnderElevation: 00,
         foregroundColor: Colors.transparent,
         elevation: 0,
@@ -167,7 +173,7 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
             width: 10,
           ),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => _routerService.replaceWithAboutView(),
             style: const ButtonStyle(
               side: MaterialStatePropertyAll(BorderSide.none),
               backgroundColor: MaterialStatePropertyAll(Colors.black45),
@@ -706,5 +712,3 @@ class _GridViewWidgetState extends State<GridViewWidget> {
 
  
 } */
-
-

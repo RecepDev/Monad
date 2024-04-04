@@ -38,7 +38,7 @@ class UserWidget extends StatelessWidget {
           shape: BoxShape.rectangle),
       child: Row(
         children: [
-           CircleAvatar(
+          CircleAvatar(
             radius: 70,
             backgroundImage: AssetImage(image),
           ),
@@ -70,17 +70,21 @@ class UserWidget extends StatelessWidget {
                       Icons.location_on,
                       color: Colors.white,
                     ),
-                     SizedBox(width: 2,),
+                    SizedBox(
+                      width: 2,
+                    ),
                     Text(
                       location,
                       style: const TextStyle(color: Colors.white, fontSize: 13),
                     ),
-                    SizedBox(width: 8,),
-                    if(twitterUserName !="")
-                    const Icon(
-                      FontAwesomeIcons.xTwitter,
-                      color: Colors.white,
+                    SizedBox(
+                      width: 8,
                     ),
+                    if (twitterUserName != "")
+                      const Icon(
+                        FontAwesomeIcons.xTwitter,
+                        color: Colors.white,
+                      ),
                     SizedBox(
                       width: 2,
                     ),
@@ -95,11 +99,11 @@ class UserWidget extends StatelessWidget {
                     SizedBox(
                       width: 8,
                     ),
-                    if(instaName !="")
-                    const Icon(
-                      FontAwesomeIcons.instagram,
-                      color: Colors.white,
-                    ),
+                    if (instaName != "")
+                      const Icon(
+                        FontAwesomeIcons.instagram,
+                        color: Colors.white,
+                      ),
                     SizedBox(
                       width: 2,
                     ),

@@ -19,6 +19,20 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: <Color>[
+                monadBlue, // Orta kısım yarı şeffaf
+                Colors.transparent, // Alt kısım tamamen şeffaf
+              ],
+              stops: const [0.05, 1], // Renklerin geçiş noktaları
+            ),
+          ),
+          child: Center(),
+        ),
         scrolledUnderElevation: 00,
         foregroundColor: Colors.transparent,
         elevation: 0,
@@ -45,7 +59,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
               side: MaterialStatePropertyAll(BorderSide.none),
               backgroundColor: MaterialStatePropertyAll(Colors.black45),
             ),
-            onPressed: () =>_routerService.replaceWithHomeView(),
+            onPressed: () => _routerService.replaceWithHomeView(),
             child: const Text(
               "Memes",
               style: TextStyle(color: Colors.white),
@@ -97,7 +111,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
             width: 10,
           ),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => _routerService.replaceWithAboutView(),
             style: const ButtonStyle(
               side: MaterialStatePropertyAll(BorderSide.none),
               backgroundColor: MaterialStatePropertyAll(Colors.black45),
@@ -166,8 +180,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     name: "Keone Hon",
                                     descp: "CO-FOUNDER & CEO",
                                     image: "assets/images/team/keone.jpeg",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "New York, USA",
                                     twitterLink: "https://twitter.com/keoneHD",
@@ -176,28 +189,27 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     name: "James Hunsaker",
                                     descp: "CO-FOUNDER & CTO",
                                     image: "assets/images/team/james.png",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "New York, USA",
-                                    twitterLink: "https://twitter.com/_jhunsaker",
+                                    twitterLink:
+                                        "https://twitter.com/_jhunsaker",
                                     twitterUserName: "@_jhunsaker"),
                                 UserWidget(
                                     name: "Eunice Giarta",
                                     descp: "CO-FOUNDER & COO",
                                     image: "assets/images/team/eunice.jpg",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "New York, USA",
-                                    twitterLink: "https://twitter.com/0x_eunice",
+                                    twitterLink:
+                                        "https://twitter.com/0x_eunice",
                                     twitterUserName: "@0x_eunice"),
                                 UserWidget(
                                     name: "",
                                     descp: "",
                                     image: "",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "",
                                     twitterLink: "",
@@ -206,8 +218,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     name: "Harry",
                                     descp: "",
                                     image: "",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "",
                                     twitterLink: "",
@@ -216,8 +227,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     name: "Lily",
                                     descp: "",
                                     image: "",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "",
                                     twitterLink: "",
@@ -226,8 +236,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     name: "Avery",
                                     descp: "",
                                     image: "",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "",
                                     twitterLink: "",
@@ -236,8 +245,7 @@ class TeamViewDesktop extends ViewModelWidget<TeamViewModel> {
                                     name: "Ivy",
                                     descp: "",
                                     image: "",
-                                    instaLink:
-                                        "",
+                                    instaLink: "",
                                     instaName: "",
                                     location: "",
                                     twitterLink: "",
