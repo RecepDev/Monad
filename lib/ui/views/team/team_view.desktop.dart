@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:monad/app/app.router.dart';
 import 'package:monad/ui/common/app_constants.dart';
-import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
@@ -15,7 +12,6 @@ import '../../common/app_colors.dart';
 import '../../widgets/Profile_widget.dart';
 import '../../widgets/appbar_widget.dart';
 import '../../widgets/bottombar_widget.dart';
-import 'team_viewmodel.dart';
 
 class TeamViewDesktop extends StatefulWidget {
   const TeamViewDesktop({super.key});
@@ -58,7 +54,6 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
             enableMMBScrolling: true,
             mmbScrollConfig: MMBScrollConfig(
 
-                // İsteğe bağlı olarak kaydırma davranışını özelleştirin
                 ),
             child: SingleChildScrollView(
               controller: _controller,
@@ -67,7 +62,6 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    /*      const SizedBox(height: 50,), */
                     Stack(
                       children: [
                         SizedBox(

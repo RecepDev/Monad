@@ -4,19 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:glass/glass.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:monad/app/app.locator.dart';
-import 'package:monad/app/app.router.dart';
 import 'package:monad/ui/common/app_colors.dart';
 import 'package:monad/ui/common/app_constants.dart';
 import 'package:monad/ui/widgets/bottombar_widget.dart';
-import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../widgets/appbar_widget.dart';
-import 'about_viewmodel.dart';
 
 class AboutViewDesktop extends StatefulWidget {
   const AboutViewDesktop({super.key});

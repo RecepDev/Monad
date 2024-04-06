@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:monad/ui/common/app_colors.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({super.key});

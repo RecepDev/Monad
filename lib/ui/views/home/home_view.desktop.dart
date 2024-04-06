@@ -3,16 +3,12 @@ import 'dart:html';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:monad/app/app.router.dart';
 import 'package:monad/extensions/bloc/bloc/memes_bloc_bloc.dart';
 import 'package:monad/ui/common/app_constants.dart';
 import 'package:monad/ui/widgets/bottombar_widget.dart';
@@ -111,7 +107,7 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    /*      const SizedBox(height: 50,), */
+                    
                     Stack(
                       children: [
                         SizedBox(
@@ -164,14 +160,7 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
                         )
                       ],
                     ),
-                    /*  Container(
-                      height: 500,
-                      width: 500,
-                      padding: EdgeInsets.all(20.0),
-                      child: HtmlElementView(
-                        viewType: "twitter",
-                      ),
-                    ), */
+                    
 
                     BlocBuilder<MemesBloc, MemesBlocState>(
                       builder: (context, state) {
@@ -217,6 +206,7 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
   }
 }
 
+// ignore: must_be_immutable
 class GridViewWidget extends StatefulWidget {
   GridViewWidget({
     super.key,
@@ -299,12 +289,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     crossAxisSpacing: 8,
                     itemCount: throwBackListLength(newList),
                     itemBuilder: (context, index) {
-                      /*    print(index);
-                    if (index == 49) {
-                      setState(() {
-                        isSkeleteonWorking = false;
-                      });
-                    } */
+                     
                       return Padding(
                         padding: const EdgeInsets.all(15),
                         child: Column(
@@ -395,36 +380,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
               ),
             ),
           ),
-          /* GridView.builder(
-            shrinkWrap: true,
-            itemCount: throwBackListLength(newList),
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(15),
-                child: Container(
-                  decoration: BoxDecoration(
-                      /* boxShadow: [BoxShadow(blurRadius: 555)], */
-                      borderRadius: BorderRadius.circular(22)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(22),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: widget.listOfMemes[index]["url"],
-                      placeholder: (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) {
-                        return Center(
-                          child: Icon(Icons.error),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),  */
+          
         ],
       ),
     );
