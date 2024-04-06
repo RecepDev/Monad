@@ -3,3 +3,11 @@ const double kdDesktopMaxContentWidth = 1150;
 
 // The max height the homeview will take up
 const double kdDesktopMaxContentHeight = 750;
+
+enum PageNames {
+  memes,
+  news,
+  social,
+  team,
+  about,
+}
