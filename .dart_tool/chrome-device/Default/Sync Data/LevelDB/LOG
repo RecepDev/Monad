@@ -1,16 +1,35 @@
-2024/04/06-15:46:26.416 2d14 Reusing MANIFEST C:\Users\recep\AppData\Local\Temp\flutter_tools.7e294b34\flutter_tools_chrome_device.957b1a0c\Default\Sync Data\LevelDB/MANIFEST-000001
-2024/04/06-15:46:26.416 2d14 Recovering log #22
-2024/04/06-15:46:26.417 2d14 Reusing old log C:\Users\recep\AppData\Local\Temp\flutter_tools.7e294b34\flutter_tools_chrome_device.957b1a0c\Default\Sync Data\LevelDB/000022.log 
-2024/04/06-15:46:26.418 2d14 Delete type=0 #3
-2024/04/06-15:46:26.418 2d14 Delete type=0 #4
-2024/04/06-15:46:26.418 2d14 Delete type=0 #7
-2024/04/06-15:46:26.418 2d14 Delete type=2 #8
-2024/04/06-15:46:26.418 2d14 Delete type=0 #10
-2024/04/06-15:46:26.418 2d14 Delete type=2 #11
-2024/04/06-15:46:26.418 2d14 Delete type=2 #14
-2024/04/06-15:46:26.418 2d14 Delete type=0 #15
-2024/04/06-15:46:26.418 2d14 Delete type=2 #16
-2024/04/06-15:46:26.418 2d14 Delete type=0 #18
-2024/04/06-15:56:45.596 2d14 Level-0 table #26: started
-2024/04/06-15:56:45.599 2d14 Level-0 table #26: 74820 bytes OK
-2024/04/06-15:56:45.600 2d14 Delete type=0 #22
+2024/04/06-16:15:46.237 3f00 Reusing MANIFEST C:\Users\recep\AppData\Local\Temp\flutter_tools.91a85166\flutter_tools_chrome_device.bbca3402\Default\Sync Data\LevelDB/MANIFEST-000001
+2024/04/06-16:15:46.238 3f00 Recovering log #25
+2024/04/06-16:15:46.238 3f00 Reusing old log C:\Users\recep\AppData\Local\Temp\flutter_tools.91a85166\flutter_tools_chrome_device.bbca3402\Default\Sync Data\LevelDB/000025.log 
+2024/04/06-16:15:46.239 3f00 Delete type=0 #3
+2024/04/06-16:15:46.239 3f00 Delete type=0 #4
+2024/04/06-16:15:46.239 3f00 Delete type=0 #7
+2024/04/06-16:15:46.239 3f00 Delete type=2 #8
+2024/04/06-16:15:46.239 3f00 Delete type=0 #10
+2024/04/06-16:15:46.239 3f00 Delete type=2 #11
+2024/04/06-16:15:46.239 3f00 Delete type=2 #14
+2024/04/06-16:15:46.239 3f00 Delete type=0 #15
+2024/04/06-16:15:46.239 3f00 Delete type=2 #16
+2024/04/06-16:15:46.239 3f00 Delete type=0 #18
+2024/04/06-16:15:46.239 3f00 Delete type=0 #22
+2024/04/06-17:16:23.388 1974 Level-0 table #29: started
+2024/04/06-17:16:23.389 1974 Level-0 table #29: 74713 bytes OK
+2024/04/06-17:16:23.390 1974 Delete type=0 #25
+2024/04/06-18:53:57.342 1974 Level-0 table #31: started
+2024/04/06-18:53:57.344 1974 Level-0 table #31: 69636 bytes OK
+2024/04/06-18:53:57.345 1974 Delete type=0 #28
+2024/04/06-18:53:57.346 3f2c Compacting 4@0 + 1@1 files
+2024/04/06-18:53:57.348 3f2c Generated table #32@0: 110 keys, 15164 bytes
+2024/04/06-18:53:57.348 3f2c Compacted 4@0 + 1@1 files => 15164 bytes
+2024/04/06-18:53:57.349 3f2c compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/04/06-18:53:57.349 3f2c Delete type=2 #20
+2024/04/06-18:53:57.349 3f2c Delete type=2 #23
+2024/04/06-18:53:57.350 3f2c Delete type=2 #26
+2024/04/06-18:53:57.350 3f2c Delete type=2 #29
+2024/04/06-18:53:57.350 3f2c Delete type=2 #31
+2024/04/06-19:32:53.108 3f00 Level-0 table #34: started
+2024/04/06-19:32:53.113 3f00 Level-0 table #34: 80159 bytes OK
+2024/04/06-19:32:53.114 3f00 Delete type=0 #30
+2024/04/06-20:38:57.049 3f00 Level-0 table #36: started
+2024/04/06-20:38:57.050 3f00 Level-0 table #36: 72237 bytes OK
+2024/04/06-20:38:57.051 3f00 Delete type=0 #33

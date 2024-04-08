@@ -9,13 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:monad/app/app.router.dart';
 import 'package:monad/extensions/bloc/bloc/memes_bloc_bloc.dart';
+import 'package:monad/extensions/enums/enums.dart';
 import 'package:monad/ui/common/app_constants.dart';
 import 'package:monad/ui/widgets/bottombar_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart' as skeleton;
 import 'package:stacked_services/stacked_services.dart';
-import 'dart:ui_web' as ui;
 import '../../../app/app.locator.dart';
 import '../../../extensions/Provider/monadProvider.dart';
 import '../../common/app_colors.dart';
@@ -38,6 +39,7 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
   @override
   void initState() {
     super.initState();
+    context.read<MonadProvider>().changePage(whichPage.Memes);
     context.read<MemesBloc>().add(BlocLoadData());
     _controller = ScrollController();
     /* _startCountdown();
@@ -70,17 +72,7 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
   @override
   Widget build(BuildContext context) {
     print("homepagestate");
-    ui.platformViewRegistry.registerViewFactory(
-      'twitter',
-      (int uid) {
-        IFrameElement _iFrame = IFrameElement()..src = "assets/twitter.html";
-        _iFrame.style.border = "none";
-        _iFrame.style.overflow = "no";
-        _iFrame.draggable = false;
-
-        return _iFrame;
-      },
-    );
+   
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -107,7 +99,6 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    
                     Stack(
                       children: [
                         SizedBox(
@@ -160,8 +151,6 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
                         )
                       ],
                     ),
-                    
-
                     BlocBuilder<MemesBloc, MemesBlocState>(
                       builder: (context, state) {
                         if (state is BlocInitial) {
@@ -193,7 +182,12 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [BottomBar()],
+                      children: [
+                        BottomBar(
+                          callback: (whichPage pageName) =>
+                              returnToStart(pageName),
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -203,6 +197,40 @@ class _HomeViewDesktopState extends State<HomeViewDesktop> {
         ],
       ),
     );
+  }
+
+  void returnToStart(whichPage pageName) {
+    if (pageName == whichPage.Memes) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithHomeView();
+      }
+    } else if (pageName == whichPage.Team) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithTeamView();
+      }
+    } else if (pageName == whichPage.About) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithAboutView();
+      }
+    }
   }
 }
 
@@ -289,7 +317,6 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     crossAxisSpacing: 8,
                     itemCount: throwBackListLength(newList),
                     itemBuilder: (context, index) {
-                     
                       return Padding(
                         padding: const EdgeInsets.all(15),
                         child: Column(
@@ -358,7 +385,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                                 duration: const Duration(milliseconds: 500),
                               );
                               waitAndSetState();
-      
+
                               widget.listOfMemes = newList[index];
                             },
                             child: Container(
@@ -380,7 +407,6 @@ class _GridViewWidgetState extends State<GridViewWidget> {
               ),
             ),
           ),
-          
         ],
       ),
     );

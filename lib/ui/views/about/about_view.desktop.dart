@@ -6,21 +6,26 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:monad/app/app.locator.dart';
+import 'package:monad/app/app.router.dart';
 import 'package:monad/ui/common/app_colors.dart';
 import 'package:monad/ui/common/app_constants.dart';
 import 'package:monad/ui/widgets/bottombar_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../extensions/Provider/monadProvider.dart';
 import '../../widgets/appbar_widget.dart';
+import 'package:monad/extensions/enums/enums.dart';
 
 class AboutViewDesktop extends StatefulWidget {
   const AboutViewDesktop({super.key});
 
   @override
-  State<AboutViewDesktop> createState() => _AboutViewDesktopState();
+  State<AboutViewDesktop> createState() => AboutViewDesktopState();
+  
 }
 
-class _AboutViewDesktopState extends State<AboutViewDesktop> {
+class AboutViewDesktopState extends State<AboutViewDesktop> {
   final _routerService = locator<RouterService>();
 
   late ScrollController _controller;
@@ -31,10 +36,14 @@ class _AboutViewDesktopState extends State<AboutViewDesktop> {
   @override
   void initState() {
     super.initState();
+    context.read<MonadProvider>().changePage(whichPage.About);
+
     _controller = ScrollController();
     /* _startCountdown();
     fetchPhotosFromDiscordChannel(); */
   }
+
+ 
 
   @override
   void dispose() {
@@ -367,7 +376,12 @@ class _AboutViewDesktopState extends State<AboutViewDesktop> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [BottomBar()],
+                        children: [
+                          BottomBar(
+                            callback: (whichPage pageName) =>
+                                returnToStart(pageName),
+                          )
+                        ],
                       ),
                     ),
                   ],
@@ -378,5 +392,41 @@ class _AboutViewDesktopState extends State<AboutViewDesktop> {
         ],
       ),
     );
+    
   }
+  void returnToStart(whichPage pageName) {
+    if (pageName == whichPage.Memes) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithHomeView();
+      }
+    } else if (pageName == whichPage.Team) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithTeamView();
+      }
+    } else if (pageName == whichPage.About) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithAboutView();
+      }
+    }
+  }
+
+   
 }

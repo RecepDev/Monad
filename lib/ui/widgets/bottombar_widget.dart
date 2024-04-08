@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:monad/extensions/enums/enums.dart';
+import 'package:provider/provider.dart';
+
+import '../../extensions/Provider/monadProvider.dart';
+
+typedef MyCallback = void Function(whichPage);
 
 class BottomBar extends StatelessWidget {
-  const BottomBar({super.key});
+  const BottomBar({super.key, required this.callback});
 
+  final MyCallback callback;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,9 +51,12 @@ class BottomBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          "Memes",
-                          style: TextStyle(color: Colors.white),
+                        GestureDetector(
+                          onTap: () => callback(whichPage.Memes),
+                          child: Text(
+                            "Memes",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                         Text(
                           "News",
@@ -55,15 +66,20 @@ class BottomBar extends StatelessWidget {
                           "Social",
                           style: TextStyle(color: Colors.white),
                         ),
-                        Text(
-                          "Team",
-                          style: TextStyle(color: Colors.white),
+                        GestureDetector(
+                          onTap: () => callback(whichPage.Team),
+                          child: Text(
+                            "Team",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
-                        Text(
-                          "About",
-                          style: TextStyle(color: Colors.white),
+                        GestureDetector(
+                          onTap: () => callback(whichPage.About),
+                          child: Text(
+                            "About",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
-                        
                       ],
                     ),
                   ),

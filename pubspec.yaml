@@ -55,5 +55,7 @@ flutter:
     - assets/images/team/james.png
     - assets/images/team/Ariq.png
     - assets/images/team/eunice.jpg
-    - assets/twitter.html
+    - assets/twitter_eunice.html
+    - assets/twitter_james.html
+    - assets/twitter_keone.html
 

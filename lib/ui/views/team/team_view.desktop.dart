@@ -1,9 +1,14 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:monad/app/app.router.dart';
+import 'package:monad/extensions/Provider/monadProvider.dart';
 import 'package:monad/ui/common/app_constants.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,6 +17,8 @@ import '../../common/app_colors.dart';
 import '../../widgets/Profile_widget.dart';
 import '../../widgets/appbar_widget.dart';
 import '../../widgets/bottombar_widget.dart';
+import 'package:monad/extensions/enums/enums.dart';
+import 'dart:ui_web' as ui;
 
 class TeamViewDesktop extends StatefulWidget {
   const TeamViewDesktop({super.key});
@@ -30,6 +37,8 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
   @override
   void initState() {
     super.initState();
+    context.read<MonadProvider>().changePage(whichPage.Team);
+
     _controller = ScrollController();
     /* _startCountdown();
     fetchPhotosFromDiscordChannel(); */
@@ -37,6 +46,42 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
 
   @override
   Widget build(BuildContext context) {
+    ui.platformViewRegistry.registerViewFactory(
+      'twitter_keone',
+      (int uid) {
+        IFrameElement _iFrame = IFrameElement()
+          ..src = "assets/twitter_keone.html";
+        _iFrame.style.border = "none";
+        _iFrame.style.overflow = "no";
+        _iFrame.draggable = false;
+
+        return _iFrame;
+      },
+    );
+    ui.platformViewRegistry.registerViewFactory(
+      'twitter_james',
+      (int uid) {
+        IFrameElement _iFrame = IFrameElement()
+          ..src = "assets/twitter_james.html";
+        _iFrame.style.border = "none";
+        _iFrame.style.overflow = "no";
+        _iFrame.draggable = false;
+
+        return _iFrame;
+      },
+    );
+    ui.platformViewRegistry.registerViewFactory(
+      'twitter_eunice',
+      (int uid) {
+        IFrameElement _iFrame = IFrameElement()
+          ..src = "assets/twitter_eunice.html";
+        _iFrame.style.border = "none";
+        _iFrame.style.overflow = "no";
+        _iFrame.draggable = false;
+
+        return _iFrame;
+      },
+    );
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MyAppBar(
@@ -52,9 +97,7 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
           ImprovedScrolling(
             scrollController: _controller,
             enableMMBScrolling: true,
-            mmbScrollConfig: MMBScrollConfig(
-
-                ),
+            mmbScrollConfig: MMBScrollConfig(),
             child: SingleChildScrollView(
               controller: _controller,
               child: SizedBox(
@@ -199,6 +242,7 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
                                                 duration:
                                                     Duration(milliseconds: 444))
                                             .moveY(begin: 50, end: 0),
+
                                         /*   UserWidget(
                                         name: "Ariq Chowdhury",
                                         descp: "Founding Engineer",
@@ -250,6 +294,32 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
                                         twitterUserName: ""),  */
                                       ],
                                     ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 500,
+                                        width: 500,
+                                        child: HtmlElementView(
+                                          viewType: 'twitter_keone',
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 500,
+                                        width: 500,
+                                        child: HtmlElementView(
+                                          viewType: 'twitter_james',
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 500,
+                                        width: 500,
+                                        child: HtmlElementView(
+                                          viewType: 'twitter_eunice',
+                                        ),
+                                      ),
+                                    ],
                                   )
                                 ],
                               ),
@@ -261,7 +331,12 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [BottomBar()],
+                        children: [
+                          BottomBar(
+                            callback: (whichPage pageName) =>
+                                returnToStart(pageName),
+                          )
+                        ],
                       ),
                     ),
                   ],
@@ -272,5 +347,39 @@ class _TeamViewDesktopState extends State<TeamViewDesktop> {
         ],
       ),
     );
+  }
+
+  void returnToStart(whichPage pageName) {
+    if (pageName == whichPage.Memes) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithHomeView();
+      }
+    } else if (pageName == whichPage.Team) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithTeamView();
+      }
+    } else if (pageName == whichPage.About) {
+      if (context.read<MonadProvider>().getcurrentPage == pageName) {
+        _controller.animateTo(
+          0, // Başlangıç noktasına scroll yapar
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        _routerService.replaceWithAboutView();
+      }
+    }
   }
 }
